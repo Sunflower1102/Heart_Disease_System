@@ -46,7 +46,7 @@ except ImportError:
     st.stop()
 
 # =========================================================
-# 1. CẤU HÌNH TRANG (GIỮ NGUYÊN FULL)
+# 1. CẤU HÌNH TRANG 
 # =========================================================
 st.set_page_config(
     page_title="Heart Disease Diagnosis System - SVM Pro",
@@ -56,7 +56,7 @@ st.set_page_config(
 )
 px.defaults.template = "plotly_white"
 
-# Custom CSS giao diện (GIỮ NGUYÊN)
+# Custom CSS giao diện 
 st.markdown("""
     <style>
     .metric-card {
@@ -121,7 +121,6 @@ def clean_data(df):
         except:
             pass 
 
-    # --- LƯU Ý: KHÔNG TỰ ĐỘNG ĐIỀN SỐ LIỆU (ĐỂ XỬ LÝ Ở TAB 1 THEO YÊU CẦU) ---
     
     # Mã hóa Label Encoding cho biến phân loại
     categorical_cols = df_clean.select_dtypes(include=['object']).columns
@@ -178,7 +177,7 @@ def plot_learning_curve_graph(estimator, X, y, cv=5):
     return fig
 
 # =========================================================
-# 3. MÀN HÌNH GIỚI THIỆU (GIỮ NGUYÊN)
+# 3. MÀN HÌNH GIỚI THIỆU 
 # =========================================================
 def show_intro_page():
     st.markdown("<h1 style='text-align: center; color: #D32F2F;'>❤️ HỆ THỐNG CHẨN ĐOÁN BỆNH SUY TIM (SVM)</h1>", unsafe_allow_html=True)
@@ -411,7 +410,7 @@ def main():
 
         st.markdown("---")
         
-        # --- PHẦN GEMINI AI (GIỮ NGUYÊN) ---
+        # --- PHẦN GEMINI AI  ---
         st.subheader("🤖 AI Giải thích & Gợi ý Đặc trưng (Gemini)")
         st.caption("AI sẽ giải thích ý nghĩa các cột và **đánh dấu các cột quan trọng nhất ** (Đã lọc bỏ biến kết quả).")
         
@@ -468,7 +467,7 @@ def main():
         st.markdown("---")
         st.subheader("Thống kê mô tả")
         st.dataframe(df_clean.describe())
-# ==================== TAB 2: VISUALIZATION (DASHBOARD FINAL - ĐÃ SỬA LỖI) ====================
+# ==================== TAB 2: VISUALIZATION  ====================
     with tab2:
         # --- LẤY DỮ LIỆU ---
         if 'df_main' in st.session_state:
@@ -932,7 +931,7 @@ def main():
                         'Importance': perm.importances_mean
                     }).sort_values(by='Importance', ascending=False)
                     
-                    # --- [MỚI] TÍNH TOÁN METRICS ĐẦY ĐỦ ---
+                    # --- TÍNH TOÁN METRICS ĐẦY ĐỦ ---
                     acc = accuracy_score(y_test, y_pred)
                     f1 = f1_score(y_test, y_pred, zero_division=0)
                     recall = recall_score(y_test, y_pred, zero_division=0)
@@ -958,11 +957,11 @@ def main():
                         "Features Count": len(selected_features)
                     }
                     
-                    # 2. [QUAN TRỌNG] Xóa cũ - Đè mới (Deduplication)
+                
                     if 'run_history' not in st.session_state:
                         st.session_state['run_history'] = []
 
-                    # Giữ lại các model KHÁC tên với model đang chạy
+                
                     st.session_state['run_history'] = [
                         entry for entry in st.session_state['run_history'] 
                         if entry['Model'] != model_name_clean
@@ -1006,12 +1005,12 @@ def main():
                     
                     progress_bar.progress(100)
                     status.success(f"✅ Huấn luyện hoàn tất! (Đã lưu vào bộ nhớ)")
-                    # === ĐÂY LÀ PHẦN QUAN TRỌNG CẦN SỬA/THÊM ===
+                
                     
                     # 1. Lưu vào Kho Model (Để Tab 4 dùng được)
                     timestamp_short = time.strftime("%H:%M:%S")
                     
-                    # 2. LƯU CÁC BIẾN QUAN TRỌNG VÀO SESSION STATE (SỬA LỖI KEYERROR TẠI ĐÂY)
+                    # 2. LƯU CÁC BIẾN QUAN TRỌNG VÀO SESSION STATE 
                     st.session_state['model'] = final_model
                     st.session_state['model_type'] = model_type
                     st.session_state['scaler'] = scaler
@@ -1063,7 +1062,7 @@ def main():
                 spec = cm[0,0] / (cm[0,0] + cm[0,1]) if (cm[0,0] + cm[0,1]) > 0 else 0
                 auc_score = roc_auc_score(y_test, y_prob) if len(np.unique(y_test)) > 1 else 0
                 
-                # --- [LOGIC MỚI] CẬP NHẬT NGƯỢC LẠI VÀO LỊCH SỬ (REAL-TIME UPDATE) ---
+                # ---  CẬP NHẬT NGƯỢC LẠI VÀO LỊCH SỬ (REAL-TIME UPDATE) ---
                 # Mục đích: Để Leaderboard và Radar Chart phía dưới thay đổi theo Slider
                 if 'run_history' in st.session_state:
                     current_model_clean = st.session_state.get('model_type', '').split('(')[0].strip()
@@ -1154,7 +1153,7 @@ def main():
                 pass 
 
             # =========================================================
-            # [GIAO DIỆN MỚI] LEADERBOARD: F2-SCORE + CUSTOM WEIGHTS
+            # LEADERBOARD: F2-SCORE + CUSTOM WEIGHTS
             # =========================================================
             st.markdown("---")
             st.header("⚔️ Bảng Xếp hạng & So sánh Đa chiều")
