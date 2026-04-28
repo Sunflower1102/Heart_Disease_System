@@ -1,0 +1,11 @@
+streamlit
+pandas
+numpy
+scikit-learn
+plotly
+joblib
+matplotlib
+scipy
+shap
+imbalanced-learn
+google-generativeai
