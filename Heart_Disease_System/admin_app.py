@@ -415,7 +415,7 @@ def main():
         st.subheader("🤖 AI Giải thích & Gợi ý Đặc trưng (Gemini)")
         st.caption("AI sẽ giải thích ý nghĩa các cột và **đánh dấu các cột quan trọng nhất ** (Đã lọc bỏ biến kết quả).")
         
-        GEMINI_API_KEY = "AIzaSyD4Ttw5qYKkhbWfCIiW-28VBCDp20LNWOY" 
+        GEMINI_API_KEY = "YOUR API KEY" 
         
         should_show_analysis = st.button("✨ Phân tích & Tìm đặc trưng quan trọng", key="gemini_eda_btn") or ('gemini_result_json' in st.session_state)
 
