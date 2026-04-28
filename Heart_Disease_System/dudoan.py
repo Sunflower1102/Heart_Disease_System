@@ -57,7 +57,7 @@ def load_deployment_package():
         return None
 
 # =========================================================
-# 3. HÀM HIỂN THỊ KẾT QUẢ (ĐÃ SỬA LỖI HIỂN THỊ)
+# 3. HÀM HIỂN THỊ KẾT QUẢ 
 # =========================================================
 def show_prediction_result(inputs, pkg, missing_cols=[]):
     model = pkg['model']
